@@ -10,6 +10,11 @@
 * 支持批量验证 Key 的用量
 * 支持除上传到 AWS S3 的所有的 tinyjpg 功能
 
+# 如何开始
+
+    $ python setup install
+    $ tinify-cli -h  # 查看帮助
+
 # 安装需求
 
 * Python 2.7
