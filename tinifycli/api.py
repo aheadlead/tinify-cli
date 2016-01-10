@@ -106,10 +106,13 @@ class TinifyCliClient(object):
         download_url = response.headers.get('location')
         r = response.json()
 
+        LOGGER.debug('返回的 JSON 为 : ' + str(r))
+
         LOGGER.debug('下载 ' + download_url)
         # 处理尺寸问题 & 下载
         if resize is None:  # 压缩但不改变尺寸
             response = self.request('GET', download_url)
+            image_bin = response.content
         else:  # 压缩且改变尺寸
             method, width, height = resize
             payload = {"resize": {"method": method}}
@@ -121,6 +124,9 @@ class TinifyCliClient(object):
 
             LOGGER.debug('保存到文件 ' + dest)
             image_bin = response.content
+
+        LOGGER.debug('Response 的 Header : ' + str(response.headers))
+
         self.dest_size = len(image_bin)
         with open(dest, 'wb') as fp:
             fp.write(image_bin)
