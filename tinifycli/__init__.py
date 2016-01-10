@@ -38,6 +38,7 @@ __title__ = 'tinify-cli'
 __author__ = 'aheadlead'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2015 aheadlead'
+__version__ = '1.1'
 
 LOGGER = logging.getLogger('tinify-cli')
 
@@ -179,6 +180,10 @@ def main():
         action='store_true',
         dest='is_debug_requests',
         help=u'输出 requests 库的调试信息')
+    group3.add_argument(
+        '-v', '--version',
+        action='version',
+        version='%(prog)s ' + __version__)
 
     args = parser.parse_args()
 
